@@ -5,14 +5,19 @@ class CustomButtonWidget extends StatelessWidget {
   final String text;
   final Color textcolor ;
   final bool isHide;
-  const CustomButtonWidget({super.key, this.color = Colors.orange,this.text = "",this.textcolor = Colors.white,this.isHide = false});
+  void Function()? onTap;
+   CustomButtonWidget({super.key, this.color = Colors.orange,this.text = "",this.textcolor = Colors.white,this.isHide = false,this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: color,
-      radius: 40,
-      child: Text(text,style: TextStyle(color: textcolor,fontSize: 30),),
+    return InkWell(
+      onTap: onTap,
+      child: CircleAvatar(
+        
+        backgroundColor: color,
+        radius: 40,
+        child: Text(text,style: TextStyle(color: textcolor,fontSize: 30),),
+      ),
     );
   }
 }
