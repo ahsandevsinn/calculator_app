@@ -1,5 +1,6 @@
 import 'package:calculator_app/widgets/custom_row_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +11,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String output = "";
+  void _evaluate(){
+    String finalInput = output.replaceAll("÷",  "/").replaceAll("*", "*");
+    Parser parser = Parser();
+    Expression exp = parser.parse(finalInput);
+    ContextModel cm = ContextModel();
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+     output = eval.toString();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           CustomRowWidget(
+            isShow: true,
+            isHide1: true,
+  
             text1: "AC",
             text2: "+/-",
             text3: "%",
@@ -34,29 +46,21 @@ class _HomeScreenState extends State<HomeScreen> {
             color2: Colors.grey,
             color3: Colors.grey,
             onTap1: () {
-              output = "AC";
-              
-               setState(() {
-                
-              });
+              output = "";
+
+              setState(() {});
             },
             onTap2: () {
               output = "+/-";
-               setState(() {
-                
-              });
+              setState(() {});
             },
             onTap3: () {
               output += "%";
-               setState(() {
-                
-              });
+              setState(() {});
             },
             onTap4: () {
               output += "÷";
-               setState(() {
-                
-              });
+              setState(() {});
             },
           ),
           CustomRowWidget(
@@ -66,31 +70,19 @@ class _HomeScreenState extends State<HomeScreen> {
             text4: "*",
             onTap1: () {
               output += "7";
-               setState(() {
-                
-              });
-              
+              setState(() {});
             },
             onTap2: () {
               output += "8";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap3: () {
               output += "9";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap4: () {
               output += "*";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
           ),
           CustomRowWidget(
@@ -100,31 +92,19 @@ class _HomeScreenState extends State<HomeScreen> {
             text4: "-",
             onTap1: () {
               output += "4";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap2: () {
               output += "5";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap3: () {
               output += "6";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap4: () {
               output += "-";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
           ),
           CustomRowWidget(
@@ -134,65 +114,45 @@ class _HomeScreenState extends State<HomeScreen> {
             text4: "+",
             onTap1: () {
               output += "1";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap2: () {
               output += "2";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap3: () {
               output += "3";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap4: () {
               output += "+";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
           ),
           CustomRowWidget(
+                  isShow: true,
+            isHide1: true,
             text1: "0",
             text2: "0",
             text3: ".",
             text4: "=",
             onTap1: () {
               output += "0";
-              setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap2: () {
               output += "0";
-               setState(() {
-                
-              });
-
+              setState(() {});
             },
             onTap3: () {
-              output = ".";
-               setState(() {
-                
-              });
-
+              output += ".";
+              setState(() {});
             },
             onTap4: () {
-              output = "=";
-               setState(() {
-                
+              // output = "=";
+              setState(() {
+                _evaluate();
               });
-
             },
           ),
         ],
@@ -200,4 +160,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

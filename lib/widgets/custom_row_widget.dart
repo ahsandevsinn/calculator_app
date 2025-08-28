@@ -14,6 +14,14 @@ class CustomRowWidget extends StatelessWidget {
   void Function()? onTap2;
   void Function()? onTap3;
   void Function()? onTap4;
+  bool isShow;
+  bool isShow1;
+  bool isShow2 ;
+  bool isShow3;
+  bool isHide;
+  bool isHide1;
+  bool isHide2;
+  bool isHide3;
   CustomRowWidget(
       {super.key,
       this.text1 = "",
@@ -27,7 +35,7 @@ class CustomRowWidget extends StatelessWidget {
       this.onTap1,
       this.onTap2,
       this.onTap3,
-      this.onTap4});
+      this.onTap4,this.isShow = false, this.isShow1 = false,this.isShow2 = false , this.isShow3 =false, this.isHide =false, this.isHide1 =false, this.isHide2 =false, this.isHide3 =false});
 
   @override
   Widget build(BuildContext context) {
@@ -40,21 +48,34 @@ class CustomRowWidget extends StatelessWidget {
             onTap: onTap1,
             text: text1,
             color: color1,
+            isShow: isShow,
+            isHide: isHide,
           ),
           CustomButtonWidget(
             text: text2,
             color: color2,
             onTap: onTap2,
+            isShow: isShow1,
+            isHide: isHide1,
+
+
           ),
           CustomButtonWidget(
             text: text3,
             color: color3,
             onTap: onTap3,
+            isShow: isShow2,
+            isHide: isHide2,
+
           ),
           CustomButtonWidget(
             text: text4,
             color: color4,
             onTap: onTap4,
+            isShow: isShow3,
+            isHide: isHide3,
+
+
           ),
         ],
       ),
